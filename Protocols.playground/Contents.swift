@@ -24,7 +24,7 @@ class Person {
 
 let jim = Person(name: "Jim", height: 64.0, favoriteFood: "Pasta")
 
-print(jim.description)
+//print(jim.description)
 //Name: Jim
 //Height: 64.0
 //Favorite Food: Pasta
@@ -35,8 +35,9 @@ protocol PrettyDescription {
     
     var description: String { get }
     
+    func getRandomStatement() -> String
+    
 }
-
 
 
 class Animal {
@@ -53,12 +54,34 @@ class Animal {
     
 }
 
-let prettyThings: [PrettyDescription] = []
+var prettyThings: [PrettyDescription] = []
 
 for prettyThing in prettyThings {
     
     print(prettyThing.description)
     
 }
+
+class Cat: PrettyDescription {
+    func getRandomStatement() -> String {
+        let statements = ["hello how are you?", "what is up?", "this is great"]
+            let count = statements.count
+            let index = Int(arc4random_uniform(UInt32(count)))
+            return statements[index]
+    }
+
+    var description: String
+    
+    init(description: String) {
+        self.description = description
+    }
+    
+}
+
+let Tiffany = Cat(description: "beautiful")
+prettyThings = [Tiffany]
+print(Tiffany.description)
+print(prettyThings[0].description)
+print(Tiffany.getRandomStatement())
 
 
